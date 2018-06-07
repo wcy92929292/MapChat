@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AniJS, Declarative handling library for CSS animations">
+    <link rel="shortcut icon" type="assets/image/x-icon" href="favicon.png">
+    <title>AniJS, A Library to Raise your Web Design without Coding</title>
+
+    <!-- Pure CSS Library -->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure.css">
+    <link rel="stylesheet" href="pure-extras.css">
+
+    <!-- Pure CSS Custom layout -->
+    <link rel="stylesheet" href="main-grid.css">
+    <link rel="stylesheet" href="marketing.css">
+
+    <!-- Font Icons -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css">
+    <link rel="stylesheet" href="flaticon.css">
+
+    <!-- Syntax Highlight -->
+    <link rel="stylesheet" href="markdown-highligth.css">
+
+    <!-- Animated CSS Animation Library -->
+    <link rel="stylesheet" href="anicollection.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="menu-collapse.css">
+    <link rel="stylesheet" href="custom.css">
+
+    <link rel="stylesheet" type="text/css" href="notification-demo.css">
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.baiduMap.min.js"></script>
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8BCLT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W8BCLT');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <div id="welcome" class="header">
+        <div class="navbar home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" data-anijs="if: animationend, on: .container-box, to: ul li, do: bounce">
+            <a class="pure-menu-heading" href="#">地图交友</a>
+            <a class="collapse-toggle" href="#" data-anijs="if: click, do: bounceIn, to: .nav-list">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="menu" class="nav-list collapse">
+                <li class="pure-menu-selected"><a href="#welcome">首页</a>
+                </li>
+                <li class="pure-menu-selected"><a href="#intro">榜单</a>
+                </li>
+				<li class="pure-menu-selected"><a href="#tryit">关于</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="splash-container" style="text-align:center;">
+        <div class="balloon ball1" data-anijs="if: animationend, on: .splash-subhead, do: ball1-end, after: $holdAnimClass;
+        if: transitionend, do: rubberBand; if: mouseover, do: rollIn, to: .ball2$.ball3$.ball4">
+            <i class="flaticon-air1 orange"></i>
+        </div>
+        <div class="balloon ball2" data-anijs="if: animationend, on: .splash-subhead, do: ball2-end, after: $holdAnimClass; if: transitionend, do: rubberBand; if: scroll, on: window, do: hinge, after: removeAnim; if: mouseover, do: hinge, to: .ball3$.ball4$.ball1$.splash$.pure-menu-heading, after: removeAnim">
+            <i class="flaticon-air1 pink"></i>
+        </div>
+        <div class="balloon ball3" data-anijs="if: animationend, on: .splash-subhead, do: ball3-end, after: $holdAnimClass; if: transitionend, do: rubberBand; if: mouseover, do: shake, to: .balloon">
+            <i class="flaticon-air1 green"></i>
+        </div>
+        <div class="balloon ball4" data-anijs="if: animationend, on: .splash-subhead, do: ball4-end, after: $holdAnimClass; if: transitionend, do: rubberBand; if: mouseover, do: rotateIn, to: .ball3$.ball2$.ball1">
+            <i class="flaticon-air1 white"></i>
+        </div>
+        <div class="splash">
+            <h1 class="splash-head" data-anijs="if: onRunFinished, on: $AniJSNotifier, do: swing animated; if: animationend, on: .balloon, do: swing"></h1>
+            <p class="splash-subhead" data-anijs="if: animationend, on: .splash-head, do: bounce">
+
+            </p>
+            <p>
+               
+            </p>
+        </div>
+		<div style="float:left;width:300px;height:500px;top: 50px;overflow: hidden;position: relative;z-index: 0;">          
+			<div class="form-style-agile">
+				给Ta留言：<input placeholder="想跟Ta表达什么？" id="demo" name="Name" type="text" required>
+			</div>
+			<div class="form-style-agile">
+				创建留言：<input placeholder="现在你在想什么？" id="createDemo" name="Name" type="text" required>
+			</div>
+			
+			<p id="placepicker"></p>
+			<button id="submit">提交</button>
+		</div>
+		<div style="width:800px;height:500px;border:#ccc solid 1px; margin:0 auto;top: 50px;" id="dituContent"></div>
+    </div>
+
+    <div class="content-wrapper">
+        <div id="intro" class="content">
+            <h2 class="content-head is-center" data-anijs="if: click, do: testingAnim">榜单</h2>
+
+            <div class="pure-g">
+                <div id="ui-components" class="l-box-lrg container-box pure-u-1 pure-u-med-1-2">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-rocket"></i>
+                        活跃用户榜
+                    </h3>
+                    <div class="pure-g">
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="tabbar.png">
+                            <p style="text-align:center; margin:0">TabBar</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="accordion.png">
+                            <p style="text-align:center; margin:0">Accordion</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="modal.png">
+                            <p style="text-align:center; margin:0">Modal</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="menu.png">
+                            <p style="text-align:center; margin:0">Menu</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="notificationapp.png">
+                            <p style="text-align:center; margin:0">Notification</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="scrollreveal.png">
+                            <p style="text-align:center; margin:0">ScrollReveal</p>
+                        </div>
+                    </div>
+
+<!-- End Syntax Highlight -->
+                </div>
+
+                <div id="ui-components" class="l-box-lrg container-box pure-u-1 pure-u-med-1-2">
+                    <h3 class="content-subhead"
+                        data-anijs="if:mouseenter, on: #ui-components .l-box, do: pulse animated, to: target">
+                        <i class="fa fa-cutlery"></i>
+                        最火地点榜
+                    </h3>
+                    <div class="pure-g">
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="tabbar.png">
+                            <p style="text-align:center; margin:0">TabBar</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="accordion.png">
+                            <p style="text-align:center; margin:0">Accordion</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="modal.png">
+                            <p style="text-align:center; margin:0">Modal</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="menu.png">
+                            <p style="text-align:center; margin:0">Menu</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="notificationapp.png">
+                            <p style="text-align:center; margin:0">Notification</p>
+                        </div>
+                        <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
+                                <img class="pure-img" src="scrollreveal.png">
+                            <p style="text-align:center; margin:0">ScrollReveal</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+        <div id="tryit" class="ribbon l-box-lrg container-box pure-g">
+            <div id="try" class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                <h2 class="content-head content-head-ribbon">关于</h2>
+                <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                    <div id="demo-message" class="pure-alert pure-alert-succes pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-4">
+                        Interaction setting up good!!!
+                    </div>
+                </div>
+
+                <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                    <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <span class="anijs-reserved-if anijs-reserved-word">If</span>
+                        </div>
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <input id="demoif" type="text" placeholder="some event" value="click">
+                        </div>
+                    </div>
+
+                    <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <span class="anijs-reserved-on anijs-reserved-word">On</span>
+                        </div>
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <input id="demoon" type="text" class="pure-input-1-2" placeholder="some selector like" value=" .navbar">
+                        </div>
+                    </div>
+
+                    <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <span class="anijs-reserved-do anijs-reserved-word">Do</span>
+                        </div>
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <input id="demodo" type="text" class="pure-input-1-2" placeholder="animation type like" value="hinge">
+                        </div>
+                    </div>
+                    <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <span class="anijs-reserved-to anijs-reserved-word">To</span>
+                        </div>
+                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                            <input id="demoto" type="text" class="pure-input-1-2" placeholder="animation target" value="input">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- </div> -->
+                <div class="pure-u-1-2 pure-u-med-1-6 pure-u-lrg-1-6">
+                    <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                        <span class="anijs-reserved-do anijs-reserved-word"></span>
+                    </div>
+                    <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
+                        <button id="demotryit" class="pure-button pure-button-primary" data-anijs="if:click, do: displayTruebounceIn, to: #try .pure-alert,before:$validateCommandExecution">Try it!</button>
+                    </div>
+                </div>
+
+                <p>
+                    <span class="anijs-reserved-if anijs-reserved-word">If</span> some event(click, scroll, mouseover and <a href="https://developer.mozilla.org/en-US/docs/Web/Events">more</a>), <span class="anijs-reserved-on anijs-reserved-word">On</span> any element (css selector), <span class="anijs-reserved-do anijs-reserved-word">Do</span> some behavior(Rotate animation), <span class="anijs-reserved-to anijs-reserved-word">To</span> (any element).
+                </p>
+                <p style="color: white;">
+                    更多<a style="text-decoration: underline;color:white" href="https://github.com/wcy92929292/">点击</a>.
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer l-box is-center">
+            Made with
+            <span class="bounceIn animated infinite">♥</span> by @babyone</a>.
+        </div>
+
+    </div>
+
+	
+	<script src="jquery-2.1.4.min.js"></script> 
+    <!-- YUI3 Framework -->
+    <script src="http://yui.yahooapis.com/3.14.1/build/yui/yui.js"></script>
+
+    <!-- AniJS Library -->
+    <script src="anijs.js"></script>
+    <script src="anijs-helper-dom.js"></script>
+
+    <!-- Syntax Highlight -->
+    <script src="highlight.pack.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- App Scripts-->
+    <script src="appconfig.js"></script>
+    <script src="app.js"></script>
+	<script src="nebPay.js"></script> 
+	<script src="bootstrap.min.js"></script> 
+	<script src="nebulas.js"></script> 
+	<script src="easy-responsive-tabs.js"></script> 
+	<script type="text/javascript">
+			"use strict";
+			var dappAddress = "n1hMaHMTUeRG658TVbgVKJyi6i8PfaCBzHi";
+
+			var nebulas = require("nebulas"),
+			Account = nebulas.Account,
+			neb = new nebulas.Neb();
+			//neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+			neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
+			
+			
+			var NebPay = require("nebpay");
+			var nebPay = new NebPay();
+			var serialNumber;
+			var intervalQuery;
+			
+			var mylng = 0;
+			var mylat = 0;
+
+			var map = new BMap.Map("dituContent");
+
+			function createMap(){
+				var point = new BMap.Point(116.395645,39.929986);
+				map.centerAndZoom(point,13);
+				window.map = map;
+			}
+			
+
+			function setMapEvent(){
+				map.enableDragging();
+				map.enableScrollWheelZoom();
+				map.enableDoubleClickZoom();
+				map.enableKeyboard();
+			}
+			
+
+			function addMapControl(){
+				var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+				map.addControl(ctrl_nav);
+				var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+				map.addControl(ctrl_ove);
+				var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+				map.addControl(ctrl_sca);
+			}
+
+			
+			
+			
+			$(document).ready(function () {
+				createMap();
+				setMapEvent();
+				addMapControl();
+				getpoint();
+			});
+			
+			
+			$("#Release").click(function(){
+				var name = $("#myname").val();
+				var number = $("#mynumber").val();
+				var date = $("#datepicker").val();
+				var time = $("#timepicker").val();
+				var message = $("#mymessage").val();
+				
+				var obj = document.getElementById("mysport"); 
+				var index = obj.selectedIndex; 
+				var sport = obj.options[index].text; 
+				if(mylng === 0){
+					alert('please click the map to mark your co-ordinates!');
+					return;
+				}
+				if(name.length === 0){
+					alert('Please improve your information');
+					return;
+				}
+				
+				var to = dappAddress;
+				var value = "0";
+				var callFunction = "sign";
+
+				var callArgs = "[\"" + "0" + "\",\""+ name + "\",\"" + number + "\",\"" + sport + "\",\"" + date + '-'+ time + "\",\"" + mylng + "\",\"" + mylat + "\",\"" + message  + "\"]";
+				
+				
+				serialNumber = nebPay.call(to, value, callFunction, callArgs, {
+					listener: cbPush
+				});
+			});
+
+
+			
+			function cbPush(resp){
+			   console.log("response of push:"+JSON.stringify(resp));
+			   
+			   if(typeof resp == 'string'){
+					console.log('reject');
+					alert("Canceled uploading");
+			   }else{
+					//alert("success");
+					intervalQuery = setInterval(function(){
+							funcIntervalQuery();
+					},10000);
+			   }
+			}
+			
+			 function funcIntervalQuery(){
+			  nebPay.queryPayInfo(serialNumber)
+				  .then(function(resp){
+					console.log("response:"+resp);
+					var respObject = JSON.parse(resp);
+					if(respObject.code ===0){
+					  alert("success");
+					}
+				  }).catch(function(err){
+					console.log(err);
+				  });
+			}
+			
+			
+			map.addEventListener("click",function(e){
+				mylng = e.point.lng;
+				mylat = e.point.lat;
+				$('#placepicker').text("(" + mylng + ", " + mylat + ")");
+			 });
+			
+		
+
+			function addMarker(point, index) {  
+				var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(150,74));  
+				var marker = new BMap.Marker(point, { icon: myIcon });  
+				map.addOverlay(marker);  
+				return marker;  
+			}  
+
+
+			function addInfoWindow(marker, respObject) {  
+
+				var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + respObject.name + '@'+ respObject.number + '</div>';
+				var html = [];
+				html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');
+				html.push('<tr>');
+				html.push('<td style="vertical-align:top;line-height:16px">' + respObject.sport  + ' </td>');
+				html.push('<tr>');
+				html.push('<td style="vertical-align:top;line-height:16px">' + respObject.time +' </td>');
+				html.push('<tr>');
+				html.push('<td style="vertical-align:top;line-height:16px">'  + "message:"+ respObject.message + ' </td>');
+				html.push('<tr>');
+				html.push('<td style="vertical-align:top;line-height:16px;" id="lng">'  + "mylng:"+ respObject.lng + ' </td>');
+				html.push('<tr>');
+				html.push('<td style="vertical-align:top;line-height:16px;" id="lat">'  + "mylat:"+ respObject.lat + ' </td>');
+				html.push('</tr>');
+				html.push('</tbody></table>');
+				var infoWindow = new BMap.InfoWindow(html.join(""), {
+					 title: title,
+					 width: 200
+				}); 
+
+				var openInfoWinFun = function () {  
+					
+					marker.openInfoWindow(infoWindow);  
+					setTimeout(function(){$('#placepicker').text("(" + respObject.lng + ", " + respObject.lat + ")");},1000);
+				};  
+				marker.addEventListener("click", openInfoWinFun);  
+				
+				return openInfoWinFun;  
+			}  
+		
+		
+			function getpoint(){
+				var from = Account.NewAccount().getAddressString();
+				var value = "0";
+				var nonce = "0";
+				var gas_price = "1000000";
+				var gas_limit = "2000000";
+				
+				var callFunction = "getinfo";
+				var callArgs = "[\"" + "50" + "\"]";
+				
+				var contract = {
+				  "function":callFunction,
+				  "args":callArgs
+				}
+
+				neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(
+					
+					function(resp){
+						console.log(resp.result);
+						var markerArr = JSON.parse(resp.result);
+						for (var i = 0; i < markerArr.length; i++) {  
+							var p0 = markerArr[i].lng;  
+							var p1 = markerArr[i].lat;  
+							var maker = addMarker(new window.BMap.Point(p0, p1), i);  
+							addInfoWindow(maker, markerArr[i], i);   
+						} 
+				}).catch(function(err){
+					  console.log("error:"+err.message);
+				})
+			
+			
+			}
+		
+			
+			
+			
+		</script>
+		<!-- Google Analytics-->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-44521541-4', 'anijs.github.io');
+		  ga('send', 'pageview');
+
+		</script>
+</body>
+
+</html>

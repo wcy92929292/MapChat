@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The easiest way to find, use and share CSS3 animations.">
+    <meta name="author" content="Dariel Noel">
+    <link rel="shortcut icon" type="assets/image/x-icon" href="public/assets/ico/favicon.png">
+    <title>AniCollection - The easiest way to find, use and share CSS3 animations.</title>
+    <!--build:css assets/styles/optimizedlibs.css-->
+    <link href="public/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="public/lib/snippets/css/snippets.css" rel="stylesheet">
+    <link href="public/lib/anicollection/anicollection.min.css" rel="stylesheet">
+    <link href="public/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body ng-app="AniCollection" ng-controller="collectionController">
+    <div class="l-navbar">
+      <!-- - module mixin includes-->
+      <div class="m-nav-bar">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display-->
+            <div class="navbar-header">
+              <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://anicollection.github.io/#/" class="navbar-brand">AniCollection</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling-->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown"><a data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">Explore<span class="caret"></span></a>
+                  <ul role="menu" class="dropdown-menu">
+                    <li><a href="submissions.html">Submissions</a></li>
+                    <li><a href="contributions.html">Contributions</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li class="divider"></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://www.kickstarter.com/projects/888703031/anijs-studio" target="_blank">AniJS Studio</a></li>
+                    <li><a href="http://anijs.github.io/" target="_blank">AniJS</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form role="search" class="navbar-form navbar-left hidden-sm">
+                      <div ng-hide="searchIsHidden" class="m-input-search form-group">
+                        <div class="icon-addon addon-sm">
+                          <input id="search" ng-model="nameFilter" type="text" placeholder="Search ex: fadeIn" class="form-control">
+                          <label for="search" rel="tooltip" title="search" class="glyphicon glyphicon-search"></label>
+                        </div>
+                      </div>
+              </form>
+              <form class="navbar-form navbar-left share-count">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="dariel_noel"></a>
+                <iframe class="github" src="http://ghbtns.com/github-btn.html?user=anicollection&repo=anicollection&type=watch&count=true&size=small"
+                allowtransparency="true" frameborder="0" scrolling="0" width="152" height="30"></iframe>
+              </form>
+              <form class="navbar-form navbar-right hidden-xs">
+                <div class="form-group">
+                        <div ng-click="toggleSelectedAnimationListPopover()" class="m-button-icon-label">
+                          <div ng-bind="selectedAnimationList.length" class="label">0</div>
+                          <button class="btn btn-primary">My Anims<em>  </em><span class="glyphicon glyphicon-download-alt"></span></button>
+                        </div>
+                        <div class="m-popover">
+                          <div ng-class="{'hidden':hideSelectedAnimationListPopover}" class="popover bottom hidden">
+                            <div class="arrow"></div>
+                            <div class="popover-title">
+                                    <div class="m-button-bar">
+                                      <ul class="pager m-0">
+                                        <button type="button" ng-click="downloadCSSCode()" class="btn btn-default btn-sm">CSS</button>
+                                        <button type="button" ng-click="downloadHTMLCode()" class="btn btn-default btn-sm">HTML</button>
+                                        <button type="button" ng-click="downloadJQueryCode()" class="btn btn-default btn-sm">JQuery</button>
+                                        <button type="button" ng-click="downloadAniJSCode()" class="btn btn-default btn-sm">AniJS</button>
+                                      </ul>
+                                    </div>
+                            </div>
+                            <div class="popover-content">
+                              <div class="row">
+                                <p ng-hide="selectedAnimationList.length &gt; 0" class="empty-content-message">Try to add some animations ;)</p>
+                                <div ng-mouseover="onMouseOverItemSquare($event)" ng-mouseleave="onMouseLeaveItemSquare($event)" ng-repeat="animation in selectedAnimationList" class="m-square-item col-md-4 col-sm-4 col-xs-4 pd-xsmall">
+                                  <div style="background-color:{{animation.color}};" class="content be-animated small"></div><a ng-click="removeFromSelectedAnimationList(animation)" class="caption full"><span class="icon glyphicon glyphicon-remove"></span></a>
+                                  <p ng-bind="animation.name" class="name"></p>
+                                </div>
+                              </div>
+                            </div>
+                                  <div class="m-divider-vertical mt-small"></div>
+                            <div class="popover-button-bar clearfix pd-small">
+                              <button type="button" ng-click="removeAll()" class="btn btn-warning btn-sm pull-right">
+                                <i class="fa fa-trash"></i>
+                                Clear All
+                              </button>
+                              <button type="button" ng-click="addAll()" class="btn btn-info btn-sm pull-right mr-small">
+                                <i class="fa fa-plus"></i>
+                                Add All
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+              </form>
+              <form class="navbar-form navbar-right hidden-xs options"><span class="glyphicon glyphicon-cog" aria-hidden="true" ng-click="toggleGlobalOptionsPopover()"></span>
+                      <div class="m-popover-options">
+                        <div ng-class="{'hidden':hideGlobalOptionsPopover}" class="popover bottom hidden">
+                          <div class="arrow"></div>
+                          <div class="popover-title">Configuration Options</div>
+                          <div class="popover-content">
+                            <form>
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" ng-checked="globalOptions.isCssPrefixed" ng-click="toggleCssPrefixedCheckbox()"> prefix css
+                                </label>
+                              </div>
+                            </form>
+                          </div>
+                                <div class="m-divider-vertical mt-small"></div>
+                          <div class="popover-button-bar clearfix pd-small"></div>
+                        </div>
+                      </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="l-content"><div id="loading-icon" class="m-loading-icon" ng>
+           <div class="center">
+             <div class="spinner">
+               <div class="cube cubemove cube1"></div>
+               <div class="cube cubemove cube2"></div>
+               <div class="cube cubemove cube3"></div>
+               <div class="cube cubemove cube4"></div><span class="loading-message tada animated infinite">Loading...</span>
+             </div>
+           </div>
+      </div>
+      <div ng-controller="addsController" ng-show="showAdds" class="m-adds-modal">
+        <div>
+          <button type="button" ng-click="closeAdds()" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="content slideInRight animated">
+          <p ng-bind-html="currentAdd.title | to_trusted" class="title"></p><a href="{{currentAdd.url}}" target="_blank" class="image-href"><img src="{{currentAdd.imgSrc}}" data-anijs="if: mouseover, do: pulse animated" onClick="_gaq.push(['_trackEvent', 'KickStarter', 'Big Image', 'Pretty Cool']);" class="img-responsive"/></a>
+          <p class="sub-title"></p>
+          <p class="see-more"><a href="{{currentAdd.url}}" data-anijs="if: mouseover, on: .m-adds-modal, do: bounce animated" onClick="_gaq.push(['_trackEvent', 'KickStarter', 'Buttton', 'Pretty Cool']);" target="_blank" class="btn btn-danger">{{currentAdd.buttonText}}</a></p>
+        </div>
+      </div>
+      <div class="l-section">
+        <div class="container-fluid"></div>
+      </div>
+      <div on-finish-render="hideLoading" class="l-section min-h-big">
+        <div class="container">
+          <div class="m-markdown-doc"><h2 id="support-feedback">Support / Feedback</h2>
+<p>Having trouble? Find a bug? Need any sort of question answered? Ask it <a href="https://github.com/anicollection/anicollection/issues">here</a> and we&#39;ll get back to you as soon as we can.</p>
+<p><a href="https://github.com/anicollection/anicollection/issues" class="btn btn-primary btn-lg m-normal">
+  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ask it
+</a></p>
+<p><strong>Details help!</strong></p>
+<p>Screenshots and screencasts go a long way in helping us troubleshoot.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="l-section">
+        <div class="container">
+                <div class="m-divider-vertical mt-large mb-large"></div>
+        </div>
+      </div>
+    </div>
+    <footer class="l-footer">
+      <div class="m-footer">
+        <div class="row">
+          <div class="col-md-3 solid-border-right">
+            <div class="col-md-12 mb-small">Just another nerd ;)</div>
+            <div class="col-md-12"><a href="https://twitter.com/dariel_noel"><img src="public/assets/images/dariel.png" class="img-circle"></a></div>
+            <div class="col-md-12 mt-small small">Made with <span class="bounceIn animated infinite">♥</span> by <a href="https://twitter.com/dariel_noel" target="_blank">@dariel_noel</a></div>
+          </div>
+          <div class="col-md-7">
+            <div class="col-md-1"></div>
+            <div class="col-md-3 text-left">
+              <h4>AniCollection</h4>
+              <ol class="list-unstyled">
+                <li class="divider"></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ol>
+            </div>
+            <div class="col-md-4 text-left">
+              <h4>Community</h4>
+              <ol class="list-unstyled">
+                <li class="divider"></li>
+                <li><a href="submissions.html">Submissions</a></li>
+                <li><a href="contributions.html">Contributions</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+              </ol>
+            </div>
+            <div class="col-md-4 text-left">
+              <h4>Projects</h4>
+              <ol class="list-unstyled">
+                <li class="divider"></li>
+                <li><a href="http://anijs.github.io/" target="_blank">AniJS</a></li>
+                <li><a href="https://www.kickstarter.com/projects/888703031/anijs-studio" target="_blank">AniJS Studio</a></li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="m-share-social pull-right">
+              <div><a href="https://twitter.com/dariel_noel" target="_blank" class="first"><i class="fa fa-twitter be-animated"></i></a><a href="https://plus.google.com/+DarielNoelVilaPlagado" target="_blank" class="second"><i class="fa fa-google-plus be-animated"></i></a><a href="http://darielnoel.github.io/" target="_blank" class="third"><i class="fa fa-wordpress be-animated"></i></a></div>
+              <p class="col-md-12 mt-small small">Follow us!</p>
+            </div>
+          </div>
+          <div class="col-md-12 small pd-small copyright">© 2015 AniCollection All rights reserved</div>
+        </div>
+      </div>
+    </footer>
+    <script src="public/lib/jquery/jquery.min.js"></script>
+    <script src="public/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="public/lib/anijs/anijs-min.js"></script>
+    <!-- add custom scripts here-->
+    <script src="public/lib/angular/angular.js"></script>
+    <script src="public/lib/angular/angular-route.js"></script>
+    <script src="public/lib/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="public/lib/mustache/mustache.js"></script>
+    <script src="public/lib/underscore/underscore-min.js"></script>
+    <script src="public/script/app.js"></script>
+    <script src="public/modules/collection/index.js"></script>
+    <script src="public/modules/collection/services/services.js"></script>
+    <script src="public/modules/collection/directives/directives.js"></script>
+    <script src="public/modules/collection/controllers/controllers.js"></script>
+    <script src="public/script/pages.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- Place this tag in your head or just before your close body tag. --><script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-44521541-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}();</script>
+  </body>
+</html>

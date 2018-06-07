@@ -1,0 +1,260 @@
+<!--
+  Scalable Vector Graphics (SVG) 1.1 (Second Edition)
+  Appendix O: Feature Strings
+
+  $Id: feature.html,v 1.1 2011/08/10 03:35:28 schepers Exp $
+
+  Note: This document is generated from ../master/feature.html.
+  Run "make" from ../master/ to regenerate it.
+  -->
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><title>Feature Strings – SVG 1.1 (Second Edition)</title><link rel="stylesheet" type="text/css" media="screen" href="style/svg-style.css"/><link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-REC" type="text/css" media="screen"/></head><body><div class="header top"><span class="namedate">SVG 1.1 (Second Edition) – 16 August 2011</span><a href="Overview.html">Top</a> ⋅ <a href="expanded-toc.html">Contents</a> ⋅ <a href="propidx.html">Previous</a> ⋅ <a href="mimereg.html">Next</a> ⋅ <a href="eltindex.html">Elements</a> ⋅ <a href="attindex.html">Attributes</a> ⋅ <a href="propidx.html">Properties</a></div>
+
+<h1>Appendix O: Feature Strings</h1><h2 id="toc">Contents</h2><ul class="toc">
+<li><a href="#Introducation">O.1 Introduction</a></li>
+<li><a href="#SVG11FeatureStrings">O.2 SVG 1.1 feature strings</a></li>
+<li><a href="#SVG10FeatureStrings">O.3 SVG 1.0 feature strings</a></li></ul>
+
+<p class="normativity"><strong>This appendix is normative.</strong></p>
+
+<h2 id="Introducation">O.1 Introduction</h2>
+
+<p>The following are the feature strings for the <a href="struct.html#RequiredFeaturesAttribute"><span class="attr-name">‘requiredFeatures’</span></a>
+attribute. These same feature strings apply to the
+<span class="dom-method-name">hasFeature</span> method call that is part
+of the <a href="svgdom.html">SVG DOM</a>'s support for the
+<a class="idlinterface" href="http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-102161490">DOMImplementation</a> interface defined in
+<a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/">DOM Level 2 Core</a>
+[<a href="refs.html#ref-DOM2">DOM2</a>] (see
+<a href="svgdom.html#FeatureStrings">Feature strings for the <strong>hasFeature</strong> method call</a>).
+In some cases the feature strings map directly to a set of attributes,
+properties or elements, in others they represent some functionality of the
+user agent (that it is a dynamic viewer for example). Note that the format and
+naming for feature strings changed from
+<a href="http://www.w3.org/TR/2001/REC-SVG-20010904/">SVG 1.0</a>
+[<a href="refs.html#ref-SVG10">SVG10</a>] to SVG 1.1. The SVG 1.0 feature
+strings are listed below after the SVG 1.1 feature strings and User Agents
+should support all listed feature strings for compatibility reasons. However,
+the SVG 1.0 feature strings can be considered deprecated.</p>
+
+<h2 id="SVG11FeatureStrings">O.2 SVG 1.1 feature strings</h2>
+
+<dl id="SVG"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVG</dd><dt>User Agent Supports:</dt><dd>At least one of the following (all of which are described
+  subsequently):
+  "http://www.w3.org/TR/SVG11/feature#SVG-static",
+  "http://www.w3.org/TR/SVG11/feature#SVG-animation",
+  "http://www.w3.org/TR/SVG11/feature#SVG-dynamic" or
+  "http://www.w3.org/TR/SVG11/feature#SVGDOM". (Because the
+  feature string "http://www.w3.org/TR/SVG11/feature#SVG" can
+  be ambiguous in some circumstances, it is recommended that
+  more specific feature strings be used.)</dd></dl>
+<dl id="SVGDOM"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVGDOM</dd><dt>User Agent Supports:</dt><dd>At least one of the following (all of which are described
+  subsequently):
+  "http://www.w3.org/TR/SVG11/feature#SVGDOM-static",
+  "http://www.w3.org/TR/SVG11/feature#SVGDOM-animation" or
+  "http://www.w3.org/TR/SVG11/feature#SVGDOM-dynamic". (Because
+  the feature string
+  "http://www.w3.org/TR/SVG11/feature#SVGDOM" can be ambiguous
+  in some circumstances, it is recommended that more specific
+  feature strings be used.)</dd></dl>
+<dl id="SVG-static"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVG-static</dd><dt>User Agent Supports:</dt><dd>
+    The following features (described below) 
+    <ul><li>http://www.w3.org/TR/SVG11/feature#CoreAttribute</li><li>http://www.w3.org/TR/SVG11/feature#Structure</li><li>
+      http://www.w3.org/TR/SVG11/feature#ContainerAttribute</li><li>
+      http://www.w3.org/TR/SVG11/feature#ConditionalProcessing</li><li>http://www.w3.org/TR/SVG11/feature#Image</li><li>http://www.w3.org/TR/SVG11/feature#Style</li><li>
+      http://www.w3.org/TR/SVG11/feature#ViewportAttribute</li><li>http://www.w3.org/TR/SVG11/feature#Shape</li><li>http://www.w3.org/TR/SVG11/feature#Text</li><li>
+      http://www.w3.org/TR/SVG11/feature#PaintAttribute</li><li>
+      http://www.w3.org/TR/SVG11/feature#OpacityAttribute</li><li>
+      http://www.w3.org/TR/SVG11/feature#GraphicsAttribute</li><li>http://www.w3.org/TR/SVG11/feature#Marker</li><li>http://www.w3.org/TR/SVG11/feature#ColorProfile</li><li>http://www.w3.org/TR/SVG11/feature#Gradient</li><li>http://www.w3.org/TR/SVG11/feature#Pattern</li><li>http://www.w3.org/TR/SVG11/feature#Clip</li><li>http://www.w3.org/TR/SVG11/feature#Mask</li><li>http://www.w3.org/TR/SVG11/feature#Filter</li><li>
+      http://www.w3.org/TR/SVG11/feature#XlinkAttribute</li><li>http://www.w3.org/TR/SVG11/feature#Font</li><li>http://www.w3.org/TR/SVG11/feature#Extensibility</li></ul>
+    For SVG viewers,
+    "http://www.w3.org/TR/SVG11/feature#SVG-static" indicates
+    that the viewer can process and render successfully all of
+    the language features corresponding to the feature strings
+    listed above.
+  </dd></dl>
+<dl id="SVGDOM-static"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVGDOM-static</dd><dt>User Agent Supports:</dt><dd>All of the DOM interfaces and methods that correspond to
+  the language features for
+  "http://www.w3.org/TR/SVG11/feature#SVG-static".</dd></dl>
+<dl id="SVG-animation"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVG-animation</dd><dt>User Agent Supports:</dt><dd>All of the language features from
+  "http://www.w3.org/TR/SVG11/feature#SVG-static" plus the
+  feature "http://www.w3.org/TR/SVG11/feature#Animation". For
+  SVG viewers running on media capable of rendering time-based
+  material, such as displays,
+  "http://www.w3.org/TR/SVG11/feature#SVG-animation" indicates
+  that the viewer can process and render successfully all of
+  the corresponding language features.</dd></dl>
+<dl id="SVGDOM-animation"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVGDOM-animation</dd><dt>User Agent Supports:</dt><dd>All of the DOM interfaces and methods that correspond to
+  the language features for
+  "http://www.w3.org/TR/SVG11/feature#SVG-animation".</dd></dl>
+<dl id="SVG-dynamic"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVG-dynamic</dd><dt>User Agent Supports:</dt><dd>
+    All of the language features from
+    "http://www.w3.org/TR/SVG11/feature#SVG-animation" plus the
+    following features: 
+    <ul><li>http://www.w3.org/TR/SVG11/feature#Hyperlinking</li><li>http://www.w3.org/TR/SVG11/feature#Scripting</li><li>http://www.w3.org/TR/SVG11/feature#View</li><li>http://www.w3.org/TR/SVG11/feature#Cursor</li><li>
+      http://www.w3.org/TR/SVG11/feature#GraphicalEventsAttribute</li><li>
+      http://www.w3.org/TR/SVG11/feature#DocumentEventsAttribute</li><li>
+      http://www.w3.org/TR/SVG11/feature#AnimationEventsAttribute</li></ul>
+    For SVG viewers running on media capable of rendering
+    time-based material, such as displays,
+    "http://www.w3.org/TR/SVG11/feature#SVG-dynamic" indicates
+    that the viewer can process and render successfully all of
+    the corresponding language features.
+  </dd></dl>
+<dl id="SVGDOM-dynamic"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#SVGDOM-dynamic</dd><dt>User Agent Supports:</dt><dd>All of the DOM interfaces and methods that correspond to
+  the language features for
+  "http://www.w3.org/TR/SVG11/feature#SVG-dynamic".</dd></dl>
+<dl id="CoreAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#CoreAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="struct.html#IDAttribute"><span class="attr-name">‘id’</span></a>, <a href="struct.html#XMLBaseAttribute"><span class="attr-name">‘xml:base’</span></a>, <a href="struct.html#XMLLangAttribute"><span class="attr-name">‘xml:lang’</span></a> and <a href="struct.html#XMLSpaceAttribute"><span class="attr-name">‘xml:space’</span></a>
+    attributes
+  </dd></dl>
+<dl id="Structure"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Structure</dd><dt>User Agent Supports:</dt><dd><a href="struct.html#SVGElement"><span class="element-name">‘svg’</span></a>, <a href="struct.html#GElement"><span class="element-name">‘g’</span></a>, <a href="struct.html#DefsElement"><span class="element-name">‘defs’</span></a>, <a href="struct.html#DescElement"><span class="element-name">‘desc’</span></a>, <a href="struct.html#TitleElement"><span class="element-name">‘title’</span></a>, <a href="metadata.html#MetadataElement"><span class="element-name">‘metadata’</span></a>, <a href="struct.html#SymbolElement"><span class="element-name">‘symbol’</span></a> and <a href="struct.html#UseElement"><span class="element-name">‘use’</span></a> elements</dd></dl>
+<dl id="BasicStructure"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#BasicStructure</dd><dt>User Agent Supports:</dt><dd>
+    <a href="struct.html#SVGElement"><span class="element-name">‘svg’</span></a>, <a href="struct.html#GElement"><span class="element-name">‘g’</span></a>, <a href="struct.html#DefsElement"><span class="element-name">‘defs’</span></a>, <a href="struct.html#DescElement"><span class="element-name">‘desc’</span></a>, <a href="struct.html#TitleElement"><span class="element-name">‘title’</span></a>, <a href="metadata.html#MetadataElement"><span class="element-name">‘metadata’</span></a> and <a href="struct.html#UseElement"><span class="element-name">‘use’</span></a> elements</dd></dl>
+<dl id="ContainerAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#ContainerAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="filters.html#EnableBackgroundProperty"><span class="prop-name">‘enable-background’</span></a> property</dd></dl>
+<dl id="ConditionalProcessing"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#ConditionalProcessing</dd><dt>User Agent Supports:</dt><dd>the <a href="struct.html#SwitchElement"><span class="element-name">‘switch’</span></a> element, and the <a href="struct.html#RequiredFeaturesAttribute"><span class="attr-name">‘requiredFeatures’</span></a>, <a href="struct.html#RequiredExtensionsAttribute"><span class="attr-name">‘requiredExtensions’</span></a> and <a href="struct.html#SystemLanguageAttribute"><span class="attr-name">‘systemLanguage’</span></a> attributes</dd></dl>
+<dl id="Image"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Image</dd><dt>User Agent Supports:</dt><dd>the <a href="struct.html#ImageElement"><span class="element-name">‘image’</span></a> element</dd></dl>
+<dl id="Style"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Style</dd><dt>User Agent Supports:</dt><dd>the <a href="styling.html#StyleElement"><span class="element-name">‘style’</span></a> element</dd></dl>
+<dl id="ViewportAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#ViewportAttribute</dd><dt>User Agent Supports:</dt><dd>the <a href="masking.html#ClipProperty"><span class="prop-name">‘clip’</span></a> and <a href="masking.html#OverflowProperty"><span class="prop-name">‘overflow’</span></a> properties</dd></dl>
+<dl id="Shape"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Shape</dd><dt>User Agent Supports:</dt><dd>the <a href="shapes.html#RectElement"><span class="element-name">‘rect’</span></a>, <a href="shapes.html#CircleElement"><span class="element-name">‘circle’</span></a>, <a href="shapes.html#LineElement"><span class="element-name">‘line’</span></a>, <a href="shapes.html#PolylineElement"><span class="element-name">‘polyline’</span></a>, <a href="shapes.html#PolygonElement"><span class="element-name">‘polygon’</span></a>, <a href="shapes.html#EllipseElement"><span class="element-name">‘ellipse’</span></a> and <a href="paths.html#PathElement"><span class="element-name">‘path’</span></a> elements</dd></dl>
+<dl id="Text"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Text</dd><dt>User Agent Supports:</dt><dd>the <a href="text.html#TextElement"><span class="element-name">‘text’</span></a>, <a href="text.html#TSpanElement"><span class="element-name">‘tspan’</span></a>, <a href="text.html#TRefElement"><span class="element-name">‘tref’</span></a>, <a href="text.html#TextPathElement"><span class="element-name">‘textPath’</span></a>, <a href="text.html#AltGlyphElement"><span class="element-name">‘altGlyph’</span></a>, <a href="text.html#AltGlyphDefElement"><span class="element-name">‘altGlyphDef’</span></a>, <a href="text.html#AltGlyphItemElement"><span class="element-name">‘altGlyphItem’</span></a> and <a href="text.html#GlyphRefElement"><span class="element-name">‘glyphRef’</span></a> elements</dd></dl>
+<dl id="BasicText"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#BasicText</dd><dt>User Agent Supports:</dt><dd>the <a href="text.html#TextElement"><span class="element-name">‘text’</span></a> element</dd></dl>
+<dl id="PaintAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#PaintAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="color.html#ColorProperty"><span class="prop-name">‘color’</span></a>, <a href="painting.html#FillProperty"><span class="prop-name">‘fill’</span></a>, <a href="painting.html#FillRuleProperty"><span class="prop-name">‘fill-rule’</span></a>, <a href="painting.html#StrokeProperty"><span class="prop-name">‘stroke’</span></a>, <a href="painting.html#StrokeDasharrayProperty"><span class="prop-name">‘stroke-dasharray’</span></a>, <a href="painting.html#StrokeDashoffsetProperty"><span class="prop-name">‘stroke-dashoffset’</span></a>, <a href="painting.html#StrokeLinecapProperty"><span class="prop-name">‘stroke-linecap’</span></a>, <a href="painting.html#StrokeLinejoinProperty"><span class="prop-name">‘stroke-linejoin’</span></a>, <a href="painting.html#StrokeMiterlimitProperty"><span class="prop-name">‘stroke-miterlimit’</span></a>, <a href="painting.html#StrokeWidthProperty"><span class="prop-name">‘stroke-width’</span></a>, <a href="painting.html#ColorInterpolationProperty"><span class="prop-name">‘color-interpolation’</span></a> and <a href="painting.html#ColorRenderingProperty"><span class="prop-name">‘color-rendering’</span></a> properties</dd></dl>
+<dl id="BasicPaintAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#BasicPaintAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="color.html#ColorProperty"><span class="prop-name">‘color’</span></a>, <a href="painting.html#FillProperty"><span class="prop-name">‘fill’</span></a>, <a href="painting.html#FillRuleProperty"><span class="prop-name">‘fill-rule’</span></a>, <a href="painting.html#StrokeProperty"><span class="prop-name">‘stroke’</span></a>, <a href="painting.html#StrokeDasharrayProperty"><span class="prop-name">‘stroke-dasharray’</span></a>, <a href="painting.html#StrokeDashoffsetProperty"><span class="prop-name">‘stroke-dashoffset’</span></a>, <a href="painting.html#StrokeLinecapProperty"><span class="prop-name">‘stroke-linecap’</span></a>, <a href="painting.html#StrokeLinejoinProperty"><span class="prop-name">‘stroke-linejoin’</span></a>, <a href="painting.html#StrokeMiterlimitProperty"><span class="prop-name">‘stroke-miterlimit’</span></a>, <a href="painting.html#StrokeWidthProperty"><span class="prop-name">‘stroke-width’</span></a> and <a href="painting.html#ColorRenderingProperty"><span class="prop-name">‘color-rendering’</span></a> properties</dd></dl>
+<dl id="OpacityAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#OpacityAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="masking.html#OpacityProperty"><span class="prop-name">‘opacity’</span></a>, <a href="painting.html#StrokeOpacityProperty"><span class="prop-name">‘stroke-opacity’</span></a> and <a href="painting.html#FillOpacityProperty"><span class="prop-name">‘fill-opacity’</span></a> properties</dd></dl>
+<dl id="GraphicsAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#GraphicsAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="painting.html#DisplayProperty"><span class="prop-name">‘display’</span></a>, <a href="painting.html#ImageRenderingProperty"><span class="prop-name">‘image-rendering’</span></a>, <a href="interact.html#PointerEventsProperty"><span class="prop-name">‘pointer-events’</span></a>, <a href="painting.html#ShapeRenderingProperty"><span class="prop-name">‘shape-rendering’</span></a>, <a href="painting.html#TextRenderingProperty"><span class="prop-name">‘text-rendering’</span></a> and <a href="painting.html#VisibilityProperty"><span class="prop-name">‘visibility’</span></a> properties</dd></dl>
+<dl id="BasicGraphicsAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#BasicGraphicsAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="painting.html#DisplayProperty"><span class="prop-name">‘display’</span></a> and <a href="painting.html#VisibilityProperty"><span class="prop-name">‘visibility’</span></a> properties</dd></dl>
+<dl id="Marker"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Marker</dd><dt>User Agent Supports:</dt><dd>the <a href="painting.html#MarkerElement"><span class="element-name">‘marker’</span></a> element</dd></dl>
+<dl id="ColorProfile"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#ColorProfile</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="color.html#ColorProfileElement"><span class="element-name">‘color-profile’</span></a> element</dd></dl>
+<dl id="Gradient"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Gradient</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="pservers.html#LinearGradientElement"><span class="element-name">‘linearGradient’</span></a>, <a href="pservers.html#RadialGradientElement"><span class="element-name">‘radialGradient’</span></a> and <a href="pservers.html#StopElement"><span class="element-name">‘stop’</span></a> elements</dd></dl>
+<dl id="Pattern"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Pattern</dd><dt>User Agent Supports:</dt><dd>the <a href="pservers.html#PatternElement"><span class="element-name">‘pattern’</span></a> element</dd></dl>
+<dl id="Clip"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Clip</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="masking.html#ClipPathElement"><span class="element-name">‘clipPath’</span></a> element and the <a href="masking.html#ClipPathProperty"><span class="prop-name">‘clip-path’</span></a> and <a href="masking.html#ClipRuleProperty"><span class="prop-name">‘clip-rule’</span></a> properties</dd></dl>
+<dl id="BasicClip"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#BasicClip</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="masking.html#ClipPathElement"><span class="element-name">‘clipPath’</span></a> element and the <a href="masking.html#ClipPathProperty"><span class="prop-name">‘clip-path’</span></a> property</dd></dl>
+<dl id="Mask"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Mask</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="masking.html#MaskElement"><span class="element-name">‘mask’</span></a> element</dd></dl>
+<dl id="Filter"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Filter</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="filters.html#FilterElement"><span class="element-name">‘filter’</span></a>, <a href="filters.html#feBlendElement"><span class="element-name">‘feBlend’</span></a>, <a href="filters.html#feColorMatrixElement"><span class="element-name">‘feColorMatrix’</span></a>, <a href="filters.html#feComponentTransferElement"><span class="element-name">‘feComponentTransfer’</span></a>, <a href="filters.html#feCompositeElement"><span class="element-name">‘feComposite’</span></a>, <a href="filters.html#feConvolveMatrixElement"><span class="element-name">‘feConvolveMatrix’</span></a>, <a href="filters.html#feDiffuseLightingElement"><span class="element-name">‘feDiffuseLighting’</span></a>, <a href="filters.html#feDisplacementMapElement"><span class="element-name">‘feDisplacementMap’</span></a>, <a href="filters.html#feFloodElement"><span class="element-name">‘feFlood’</span></a>, <a href="filters.html#feGaussianBlurElement"><span class="element-name">‘feGaussianBlur’</span></a>, <a href="filters.html#feImageElement"><span class="element-name">‘feImage’</span></a>, <a href="filters.html#feMergeElement"><span class="element-name">‘feMerge’</span></a>, <a href="filters.html#feMergeNodeElement"><span class="element-name">‘feMergeNode’</span></a>, <a href="filters.html#feMorphologyElement"><span class="element-name">‘feMorphology’</span></a>, <a href="filters.html#feOffsetElement"><span class="element-name">‘feOffset’</span></a>, <a href="filters.html#feSpecularLightingElement"><span class="element-name">‘feSpecularLighting’</span></a>, <a href="filters.html#feTileElement"><span class="element-name">‘feTile’</span></a>, <a href="filters.html#feDistantLightElement"><span class="element-name">‘feDistantLight’</span></a>, <a href="filters.html#fePointLightElement"><span class="element-name">‘fePointLight’</span></a>, <a href="filters.html#feSpotLightElement"><span class="element-name">‘feSpotLight’</span></a>, <a href="filters.html#feFuncRElement"><span class="element-name">‘feFuncR’</span></a>, <a href="filters.html#feFuncGElement"><span class="element-name">‘feFuncG’</span></a>, <a href="filters.html#feFuncBElement"><span class="element-name">‘feFuncB’</span></a> and <a href="filters.html#feFuncAElement"><span class="element-name">‘feFuncA’</span></a> elements</dd></dl>
+<dl id="BasicFilter"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#BasicFilter</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="filters.html#FilterElement"><span class="element-name">‘filter’</span></a>, <a href="filters.html#feBlendElement"><span class="element-name">‘feBlend’</span></a>, <a href="filters.html#feColorMatrixElement"><span class="element-name">‘feColorMatrix’</span></a>, <a href="filters.html#feComponentTransferElement"><span class="element-name">‘feComponentTransfer’</span></a>, <a href="filters.html#feCompositeElement"><span class="element-name">‘feComposite’</span></a>, <a href="filters.html#feFloodElement"><span class="element-name">‘feFlood’</span></a>, <a href="filters.html#feGaussianBlurElement"><span class="element-name">‘feGaussianBlur’</span></a>, <a href="filters.html#feImageElement"><span class="element-name">‘feImage’</span></a>, <a href="filters.html#feMergeElement"><span class="element-name">‘feMerge’</span></a>, <a href="filters.html#feMergeNodeElement"><span class="element-name">‘feMergeNode’</span></a>, <a href="filters.html#feOffsetElement"><span class="element-name">‘feOffset’</span></a>, <a href="filters.html#feTileElement"><span class="element-name">‘feTile’</span></a>, <a href="filters.html#feFuncRElement"><span class="element-name">‘feFuncR’</span></a>, <a href="filters.html#feFuncGElement"><span class="element-name">‘feFuncG’</span></a>, <a href="filters.html#feFuncBElement"><span class="element-name">‘feFuncB’</span></a> and <a href="filters.html#feFuncAElement"><span class="element-name">‘feFuncA’</span></a> elements</dd></dl>
+<dl id="DocumentEventsAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#DocumentEventsAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="script.html#OnUnloadEventAttribute"><span class="attr-name">‘onunload’</span></a>, <a href="script.html#OnAbortEventAttribute"><span class="attr-name">‘onabort’</span></a>, <a href="script.html#OnErrorEventAttribute"><span class="attr-name">‘onerror’</span></a>, <a href="script.html#OnResizeEventAttribute"><span class="attr-name">‘onresize’</span></a>, <a href="script.html#OnScrollEventAttribute"><span class="attr-name">‘onscroll’</span></a> and <a href="script.html#OnZoomEventAttribute"><span class="attr-name">‘onzoom’</span></a> attributes</dd></dl>
+<dl id="GraphicalEventsAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#GraphicalEventsAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="script.html#OnFocusInEventAttribute"><span class="attr-name">‘onfocusin’</span></a>, <a href="script.html#OnFocusOutEventAttribute"><span class="attr-name">‘onfocusout’</span></a>, <a href="script.html#OnActivateEventAttribute"><span class="attr-name">‘onactivate’</span></a>, <a href="script.html#OnClickEventAttribute"><span class="attr-name">‘onclick’</span></a>, <a href="script.html#OnMouseDownEventAttribute"><span class="attr-name">‘onmousedown’</span></a>, <a href="script.html#OnMouseUpEventAttribute"><span class="attr-name">‘onmouseup’</span></a>, <a href="script.html#OnMouseOverEventAttribute"><span class="attr-name">‘onmouseover’</span></a>, <a href="script.html#OnMouseMoveEventAttribute"><span class="attr-name">‘onmousemove’</span></a>, <a href="script.html#OnMouseOutEventAttribute"><span class="attr-name">‘onmouseout’</span></a> and <a href="script.html#OnLoadEventAttribute"><span class="attr-name">‘onload’</span></a> attributes</dd></dl>
+<dl id="AnimationEventsAttribute"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#AnimationEventsAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="script.html#OnBeginEventAttribute"><span class="attr-name">‘onbegin’</span></a>, <a href="script.html#OnEndEventAttribute"><span class="attr-name">‘onend’</span></a>, <a href="script.html#OnRepeatEventAttribute"><span class="attr-name">‘onrepeat’</span></a> and <a href="script.html#OnLoadEventAttribute"><span class="attr-name">‘onload’</span></a> attributes</dd></dl>
+<dl id="Cursor"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Cursor</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="interact.html#CursorElement"><span class="element-name">‘cursor’</span></a> element</dd></dl>
+<dl id="Hyperlinking"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Hyperlinking</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="linking.html#AElement"><span class="element-name">‘a’</span></a> element</dd></dl>
+<dl id="XlinkAttribute"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#XlinkAttribute</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="linking.html#XLinkTypeAttribute"><span class="attr-name">‘xlink:type’</span></a>, <a href="animate.html#HrefAttribute"><span class="attr-name">‘xlink:href’</span></a>, <a href="linking.html#XLinkRoleAttribute"><span class="attr-name">‘xlink:role’</span></a>, <a href="linking.html#XLinkArcRoleAttribute"><span class="attr-name">‘xlink:arcrole’</span></a>, <a href="linking.html#XLinkTitleAttribute"><span class="attr-name">‘xlink:title’</span></a>, <a href="linking.html#XLinkShowAttribute"><span class="attr-name">‘xlink:show’</span></a> and <a href="linking.html#XLinkActuateAttribute"><span class="attr-name">‘xlink:actuate’</span></a> attributes</dd></dl>
+<dl id="ExternalResourcesRequired"><dt>Feature String:</dt><dd>
+  http://www.w3.org/TR/SVG11/feature#ExternalResourcesRequired</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="struct.html#ExternalResourcesRequiredAttribute"><span class="attr-name">‘externalResourcesRequired’</span></a> attribute</dd></dl>
+<dl id="View"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#View</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="linking.html#ViewElement"><span class="element-name">‘view’</span></a> element</dd></dl>
+<dl id="Script"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Script</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="script.html#ScriptElement"><span class="element-name">‘script’</span></a> element</dd></dl>
+<dl id="Animation"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Animation</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="animate.html#AnimateElement"><span class="element-name">‘animate’</span></a>, <a href="animate.html#SetElement"><span class="element-name">‘set’</span></a>, <a href="animate.html#AnimateMotionElement"><span class="element-name">‘animateMotion’</span></a>, <a href="animate.html#AnimateTransformElement"><span class="element-name">‘animateTransform’</span></a>, <a href="animate.html#AnimateColorElement"><span class="element-name">‘animateColor’</span></a> and <a href="animate.html#MPathElement"><span class="element-name">‘mpath’</span></a> elements</dd></dl>
+<dl id="Font"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Font</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="fonts.html#FontElement"><span class="element-name">‘font’</span></a>, <a href="fonts.html#FontFaceElement"><span class="element-name">‘font-face’</span></a>, <a href="fonts.html#GlyphElement"><span class="element-name">‘glyph’</span></a>, <a href="fonts.html#MissingGlyphElement"><span class="element-name">‘missing-glyph’</span></a>, <a href="fonts.html#HKernElement"><span class="element-name">‘hkern’</span></a>, <a href="fonts.html#VKernElement"><span class="element-name">‘vkern’</span></a>, <a href="fonts.html#FontFaceSrcElement"><span class="element-name">‘font-face-src’</span></a>, <a href="fonts.html#FontFaceURIElement"><span class="element-name">‘font-face-uri’</span></a>, <a href="fonts.html#FontFaceFormatElement"><span class="element-name">‘font-face-format’</span></a> and <a href="fonts.html#FontFaceNameElement"><span class="element-name">‘font-face-name’</span></a>  elements</dd></dl>
+<dl id="BasicFont"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#BasicFont</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="fonts.html#FontElement"><span class="element-name">‘font’</span></a>, <a href="fonts.html#FontFaceElement"><span class="element-name">‘font-face’</span></a>, <a href="fonts.html#GlyphElement"><span class="element-name">‘glyph’</span></a>, <a href="fonts.html#MissingGlyphElement"><span class="element-name">‘missing-glyph’</span></a>, <a href="fonts.html#HKernElement"><span class="element-name">‘hkern’</span></a>, <a href="fonts.html#FontFaceSrcElement"><span class="element-name">‘font-face-src’</span></a> and <a href="fonts.html#FontFaceNameElement"><span class="element-name">‘font-face-name’</span></a>  elements</dd></dl>
+<dl id="Extensibility"><dt>Feature String:</dt><dd>http://www.w3.org/TR/SVG11/feature#Extensibility</dd><dt>User Agent Supports:</dt><dd>
+    the <a href="extend.html#ForeignObjectElement"><span class="element-name">‘foreignObject’</span></a> element</dd></dl>
+
+<h2 id="SVG10FeatureStrings">O.3 SVG 1.0 feature strings</h2>
+
+    <p>All <a href="http://www.w3.org/TR/2001/REC-SVG-20010904/">SVG 1.0</a> [<a href="refs.html#ref-SVG10">SVG10</a>]
+    feature strings referring to language
+    capabilities begin with <strong>"org.w3c.svg"</strong>. All SVG
+    1.0 feature strings referring to <a href="svgdom.html">SVG
+    DOM</a> capabilities begin with
+    <strong>"org.w3c.dom.svg"</strong>.</p>
+    <ul><li>The feature string <strong>"org.w3c.svg"</strong>
+      indicates that the user agent supports at least one of the
+      following (all of which are described subsequently):
+      <strong>"org.w3c.svg.static"</strong>,
+      <strong>"org.w3c.svg.animation"</strong>,
+      <strong>"org.w3c.svg.dynamic"</strong> or
+      <strong>"org.w3c.dom.svg"</strong>. (Because the feature
+      string <strong>"org.w3c.svg"</strong> can be ambiguous in
+      some circumstances, it is recommended that more specific
+      feature strings be used.)</li><li>The feature string <strong>"org.w3c.dom.svg"</strong>
+      indicates that the user agent supports at least one of the
+      following (all of which are described subsequently):
+      <strong>"org.w3c.dom.svg.static"</strong>,
+      <strong>"org.w3c.dom.svg.animation"</strong> or
+      <strong>"org.w3c.dom.svg.dynamic"</strong>. (Because the
+      feature string <strong>"org.w3c.dom.svg"</strong> can be
+      ambiguous in some circumstances, it is recommended that more
+      specific feature strings be used.)</li><li>
+        The feature string <strong>"org.w3c.svg.static"</strong>
+        indicates the availability of all of the language
+        capabilities defined in: 
+        <ul><li><a href="types.html">Basic Data Types and
+          Interfaces</a></li><li><a href="struct.html">Document Structure</a></li><li><a href="styling.html">Styling</a></li><li><a href="coords.html">Coordinate Systems,
+          Transformations and Units</a></li><li><a href="paths.html">Paths</a></li><li><a href="shapes.html">Basic Shapes</a></li><li><a href="text.html">Text</a></li><li><a href="painting.html">Painting: Filling, Stroking
+          and Marker Symbols</a></li><li><a href="color.html">Color</a></li><li><a href="pservers.html">Gradients and
+          Patterns</a></li><li><a href="masking.html">Clipping, Masking and
+          Compositing</a></li><li><a href="filters.html">Filter Effects</a></li><li><a href="fonts.html">Fonts</a></li><li>The <a href="struct.html#SwitchElement"><span class="element-name">‘switch’</span></a> element</li><li>The <a href="struct.html#RequiredFeaturesAttribute"><span class="attr-name">‘requiredFeatures’</span></a> attribute</li><li>The <a href="struct.html#RequiredExtensionsAttribute"><span class="attr-name">‘requiredExtensions’</span></a> attribute</li><li>The <a href="struct.html#SystemLanguageAttribute"><span class="attr-name">‘systemLanguage’</span></a> attribute</li></ul>
+        <p>For SVG viewers, <strong>"org.w3c.svg.static"</strong>
+        indicates that the viewer can process and render
+        successfully all of the language features listed above.</p>
+      </li><li>The feature string
+      <strong>"org.w3c.dom.svg.static"</strong> indicates the
+      availability of all of the DOM interfaces and methods that
+      correspond to the language features for
+      <strong>"org.w3c.svg.static"</strong>.</li><li>The feature string
+      <strong>"org.w3c.svg.animation"</strong> includes all of the
+      language capabilities defined for
+      <strong>"org.w3c.svg.static"</strong> plus the availability
+      of all of the language capabilities defined in <a href="animate.html">Animation</a>. For SVG viewers running on
+      media capable of rendering time-based material, such as
+      displays, <strong>"org.w3c.svg.animation"</strong> indicates
+      that the viewer can process and render successfully all of
+      the corresponding language features.</li><li>The feature string
+      <strong>"org.w3c.dom.svg.animation"</strong> corresponds to
+      the availability of DOM interfaces and methods that
+      correspond to the language features for
+      <strong>"org.w3c.svg.animation"</strong>.</li><li>The feature string <strong>"org.w3c.svg.dynamic"</strong>
+      includes all of the language capabilities defined for
+      <strong>"org.w3c.svg.animation"</strong> plus the
+      availability of all of the language capabilities defined in
+      <a href="svgdom.html#RelationshipWithDOM2Events">Relationship
+      with DOM2 events</a>, <a href="linking.html">Linking</a> and
+      <a href="interact.html">Interactivity</a> and <a href="script.html">Scripting</a>. For SVG viewers running on
+      media capable of rendering time-based material, such as
+      displays, <strong>"org.w3c.svg.dynamic"</strong> indicates
+      that the viewer can process and render successfully all of
+      the corresponding language features.</li><li>The feature string
+      <strong>"org.w3c.dom.svg.dynamic"</strong> corresponds to the
+      availability of DOM interfaces and methods that correspond to
+      the language features for
+      <strong>"org.w3c.svg.dynamic"</strong>.</li><li>The feature string <strong>"org.w3c.svg.all"</strong>
+      corresponds to the availability of all of the language
+      capabilities defined in this specification.</li><li>The feature string <strong>"org.w3c.dom.svg.all"</strong>
+      corresponds to the availability of all of the DOM interfaces
+      defined in this specification.</li></ul>
+
+<div class="header bottom"><span class="namedate">SVG 1.1 (Second Edition) – 16 August 2011</span><a href="Overview.html">Top</a> ⋅ <a href="expanded-toc.html">Contents</a> ⋅ <a href="propidx.html">Previous</a> ⋅ <a href="mimereg.html">Next</a> ⋅ <a href="eltindex.html">Elements</a> ⋅ <a href="attindex.html">Attributes</a> ⋅ <a href="propidx.html">Properties</a></div><script src="style/expanders.js" type="text/javascript"> </script></body></html>
