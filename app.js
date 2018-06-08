@@ -1,7 +1,7 @@
 //Setting default class adding when anim
 AniJS.setClassNamesWhenAnim('animated');
 
-YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-highlighters','autocomplete-filters', 'transition', function(Y) {
+YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-highlighters','autocomplete-filters', 'transition', function(Y) {/*
     //Obtain AniJS default helper
     var AniJSDefaultHelper = AniJS.getHelper();
 
@@ -88,7 +88,7 @@ YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-high
         //tempBehavior,
         //tempSquareHTML;
 
-    /* for (var i = 0; i < size; i++) {
+     for (var i = 0; i < size; i++) {
         tempBehavior = behaviorSquares[i];
         tempSquareHTML = '<div class="demo-square demo1 ' + colorSquares[i] + '" ' +
                             'data-anijs="if: ' + 'click' + ',' +
@@ -105,21 +105,21 @@ YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-high
             colCount--;
         }
         squareCollectionHTML += tempSquareHTML;
-    } */
+    } 
     //baseNode.one('.click-square-content-demo').append(Y.Node.create(squareCollectionHTML));
     //var anijsDinamicallySintax = Y.one('.anijs-sintax-dinamically'),
        
         
         anijsHighlightDinamically = Y.one('.anijs-highlight-dinamically');
-    /* baseNode.delegate('click', function(e){
+     baseNode.delegate('click', function(e){
         var currentSquareIndex = parseInt(e.currentTarget.getAttribute('data-id'));
         doValue.set('innerHTML', behaviorSquares[currentSquareIndex].do);
         toValue.set('innerHTML', behaviorSquares[currentSquareIndex].to);
         doHighLValue.set('innerHTML', behaviorSquares[currentSquareIndex].do);
         toHighLValue.set('innerHTML', behaviorSquares[currentSquareIndex].to);
-    }, '.demo-square'); */
+    }, '.demo-square'); 
 
     // baseNode.appendChild(squareCollectionHTML);
     AniJS.run();
 
-});
+*/});
