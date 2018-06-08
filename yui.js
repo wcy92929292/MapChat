@@ -1594,10 +1594,10 @@ combo spec to use when dynamically loading the modules.
             maxURLLength: 500,
 
             // the base path for non-combo paths
-            base: 'http://yui.yahooapis.com/2.8.0r4/build/',
+            base: 'https://yui.yahooapis.com/2.8.0r4/build/',
 
             // the path to the combo service
-            comboBase: 'http://yui.yahooapis.com/combo?',
+            comboBase: 'https://yui.yahooapis.com/combo?',
 
             // a fragment to prepend to the path attribute when
             // when building combo urls
@@ -5926,7 +5926,7 @@ Y.Env.meta = META;
  * @class Loader
  * @param {Object} config an optional set of configuration options.
  * @param {String} config.base The base dir which to fetch this module from
- * @param {String} config.comboBase The Combo service base path. Ex: `http://yui.yahooapis.com/combo?`
+ * @param {String} config.comboBase The Combo service base path. Ex: `https://yui.yahooapis.com/combo?`
  * @param {String} config.root The root path to prepend to module names for the combo service. Ex: `2.5.2/build/`
  * @param {String|Object} config.filter A filter to apply to result urls. <a href="#property_filter">See filter property</a>
  * @param {Object} config.filters Per-component filter specification.  If specified for a given component, this overrides the filter config.
@@ -6051,7 +6051,7 @@ Y.Loader = function(o) {
      * The base directory.
      * @property base
      * @type string
-     * @default http://yui.yahooapis.com/[YUI VERSION]/build/
+     * @default https://yui.yahooapis.com/[YUI VERSION]/build/
      */
     self.base = Y.Env.meta.base + Y.Env.meta.root;
 
@@ -6059,7 +6059,7 @@ Y.Loader = function(o) {
      * Base path for the combo service
      * @property comboBase
      * @type string
-     * @default http://yui.yahooapis.com/combo?
+     * @default https://yui.yahooapis.com/combo?
      */
     self.comboBase = Y.Env.meta.comboBase;
 
@@ -6228,7 +6228,7 @@ Y.Loader = function(o) {
      *
      *          // This is combined with the loader base property to get
      *          // the default root directory for a skin. ex:
-     *          // http://yui.yahooapis.com/2.3.0/build/assets/skins/sam/
+     *          // https://yui.yahooapis.com/2.3.0/build/assets/skins/sam/
      *          base: 'assets/skins/',
      *
      *          // Any component-specific overrides can be specified here,
