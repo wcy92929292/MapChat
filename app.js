@@ -53,9 +53,9 @@ YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-high
 
     // This just makes sure that the href="#" attached to the <a> elements
     // don't scroll you back up the page.
-    Y.one('body').delegate('click', function(e) {
-        e.preventDefault();
-    }, 'a[href="#"]');
+//    Y.one('body').delegate('click', function(e) {
+//        e.preventDefault();
+//    }, 'a[href="#"]');
 
     //All non internal links open in a new tab
     var links = Y.all('a');
