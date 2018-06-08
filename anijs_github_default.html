@@ -365,8 +365,9 @@
 				  .then(function(resp){
 					console.log("response:"+resp);
 					var respObject = JSON.parse(resp);
-					if(respObject.code ===0){
-					  alert("留言成功！");
+					if(respObject.code ===1){
+					  alert("留言成功！即将刷新...");
+					  location.reload();
 					}
 				  }).catch(function(err){
 					console.log(err);
