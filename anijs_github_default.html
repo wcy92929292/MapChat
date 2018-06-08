@@ -264,7 +264,7 @@
 	<script type="text/javascript">
 			"use strict";
 			var dappAddress = "n1rsACSGH2NuFoV9eHkZJieLXuUqDSXSYty";
-
+			//n1iL99gejsLXHkFw9CD6GSoucNeFTLr2zQF
 			var nebulas = require("nebulas"),
 			Account = nebulas.Account,
 			neb = new nebulas.Neb();
@@ -387,7 +387,9 @@
 		
 
 			function addMarker(point, index) {  
-				var myIcon = new BMap.Icon("heart-1.png", new BMap.Size(150,74));  
+				var myIcon = new BMap.Icon("heart-1.png", new BMap.Size(150,74),{
+					anchor: new BMap.Size(15, 15)
+				});  
 				var marker = new BMap.Marker(point, { icon: myIcon });  
 				map.addOverlay(marker);  
 				return marker;  
