@@ -42,14 +42,14 @@ YUI().use('node-base', 'node-event-delegate', 'autocomplete', 'autocomplete-high
             {rootNode:'#demodo', source: autocompleSources.do}
         ];
 
-    Y.each(autocompleteConfig, function(item){
+//    Y.each(autocompleteConfig, function(item){
 //        Y.one(item.rootNode).plug(Y.Plugin.AutoComplete, {
 //            resultHighlighter: 'phraseMatch',
 //            resultFilters: 'phraseMatch',
 //            activateFirstItem: true,
 //            source: item.source
 //        });
-    });
+//    });
 
     // This just makes sure that the href="#" attached to the <a> elements
     // don't scroll you back up the page.
