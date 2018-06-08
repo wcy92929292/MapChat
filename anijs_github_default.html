@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AniJS, Declarative handling library for CSS animations">
     <link rel="shortcut icon" type="assets/image/x-icon" href="favicon.png">
-    <title>AniJS, A Library to Raise your Web Design without Coding</title>
+    <title>地图交友</title>
 
     <!-- Pure CSS Library -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure.css">
@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="custom.css">
 
     <link rel="stylesheet" type="text/css" href="notification-demo.css">
+	<link rel="stylesheet" type="text/css" href="iconfont.css">
 	<script src="http://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
 	<script src="jquery.min.js"></script>
 	<script src="jquery.baiduMap.min.js"></script>
@@ -38,13 +39,12 @@
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8BCLT"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W8BCLT');</script>
+    })(window,document,'script','dataLayer','GTM-W8BCLT');</script> -->
     <!-- End Google Tag Manager -->
-
 </head>
 
 <body>
@@ -57,7 +57,7 @@
             <ul id="menu" class="nav-list collapse">
                 <li class="pure-menu-selected"><a href="#welcome">首页</a>
                 </li>
-                <li class="pure-menu-selected"><a href="#intro">榜单</a>
+                <li class="pure-menu-selected"><a href="#intro">排行榜</a>
                 </li>
 				<li class="pure-menu-selected"><a href="#tryit">关于</a>
                 </li>
@@ -87,23 +87,28 @@
                
             </p>
         </div>
-		<div style="float:left;width:300px;height:500px;top: 50px;overflow: hidden;position: relative;z-index: 0;">          
-			<div class="form-style-agile">
-				给Ta留言：<input placeholder="想跟Ta表达什么？" id="demo" name="Name" type="text" required>
+		<div style="font-weight: bold;margin-left: 20px;float:left;width:300px;height:500px;top: 50px;overflow: hidden;position: relative;z-index: 0;">          
+			<p style="color: #080808;">
+                <span class="anijs-reserved-if anijs-reserved-word">这是</span>一款全新的基于位置的留言交友平台。 <span class="anijs-reserved-on anijs-reserved-word" style="color: #e8dc41;">使用</span> 全新的交互方式和星云链存储方式。 <span class="anijs-reserved-do anijs-reserved-word">首先</span>，你可以选择一个新的位置，来创建一条留言，表达你现在的想法，或者想说的话。 <span class="anijs-reserved-to anijs-reserved-word" style="color: #f52384;">亦或者</span> 你可以选择一个已经有人留言的地点，来阅读Ta的心情，并回复Ta。
+            </p>
+			
+			<div class="form-style-agile" id="reply" style="display:none;color: #080808;">
+				给Ta留言：<input placeholder="想跟Ta表达什么？" id="demo" name="Name" type="text" style="outline: none;font-size: 14px;border: none;color: #000;font-family: 'Open Sans', sans-serif;letter-spacing: 1px;padding: 12px 15px;background: #fff;margin-bottom: 16px;-webkit-justify-content: space-between;justify-content: space-between; width: 70%;box-sizing: border-box;border-bottom: 2px solid #3eb060;" required>
 			</div>
-			<div class="form-style-agile">
-				创建留言：<input placeholder="现在你在想什么？" id="createDemo" name="Name" type="text" required>
+			<div class="form-style-agile" id="create" style="display:none;color: #080808;">
+				创建留言：<input placeholder="现在你在想什么？" id="createDemo" name="Name" type="text" style="outline: none;font-size: 14px;border: none;color: #000;font-family: 'Open Sans', sans-serif;letter-spacing: 1px;padding: 12px 15px;background: #fff;margin-bottom: 16px;-webkit-justify-content: space-between;justify-content: space-between; width: 70%;box-sizing: border-box;border-bottom: 2px solid #3eb060;" required>
 			</div>
 			
-			<p id="placepicker"></p>
-			<button id="submit">提交</button>
+			<p id="mylng" style="display:none;"></p>
+			<p id="mylat" style="display:none;"></p>
+			<button id="submit" class="pure-button pure-button-primary" style="background-color: #367159;display:none;">提交</button>
 		</div>
 		<div style="width:800px;height:500px;border:#ccc solid 1px; margin:0 auto;top: 50px;" id="dituContent"></div>
     </div>
 
     <div class="content-wrapper">
         <div id="intro" class="content">
-            <h2 class="content-head is-center" data-anijs="if: click, do: testingAnim">榜单</h2>
+            <h2 class="content-head is-center" data-anijs="if: click, do: testingAnim">排行榜</h2>
 
             <div class="pure-g">
                 <div id="ui-components" class="l-box-lrg container-box pure-u-1 pure-u-med-1-2">
@@ -111,30 +116,30 @@
                         <i class="fa fa-rocket"></i>
                         活跃用户榜
                     </h3>
-                    <div class="pure-g">
+                    <div class="pure-g" id="peopleActive">
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="tabbar.png">
-                            <p style="text-align:center; margin:0">TabBar</p>
+                                <img class="pure-img" src="number-1.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people1">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="accordion.png">
-                            <p style="text-align:center; margin:0">Accordion</p>
+                                <img class="pure-img" src="number-2.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people2">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="modal.png">
-                            <p style="text-align:center; margin:0">Modal</p>
+                                <img class="pure-img" src="number-3.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people3">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="menu.png">
-                            <p style="text-align:center; margin:0">Menu</p>
+                                <img class="pure-img" src="number-4.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people4">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="notificationapp.png">
-                            <p style="text-align:center; margin:0">Notification</p>
+                                <img class="pure-img" src="number-5.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people5">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="scrollreveal.png">
-                            <p style="text-align:center; margin:0">ScrollReveal</p>
+                                <img class="pure-img" src="number-6.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="people6">虚位以待</p>
                         </div>
                     </div>
 
@@ -149,28 +154,28 @@
                     </h3>
                     <div class="pure-g">
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="tabbar.png">
-                            <p style="text-align:center; margin:0">TabBar</p>
+                                <img class="pure-img" src="number1-1.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area1">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="accordion.png">
-                            <p style="text-align:center; margin:0">Accordion</p>
+                                <img class="pure-img" src="number1-2.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area2">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="modal.png">
-                            <p style="text-align:center; margin:0">Modal</p>
+                                <img class="pure-img" src="number1-3.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area3">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="menu.png">
-                            <p style="text-align:center; margin:0">Menu</p>
+                                <img class="pure-img" src="number1-4.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area4">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="notificationapp.png">
-                            <p style="text-align:center; margin:0">Notification</p>
+                                <img class="pure-img" src="number1-5.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area5">虚位以待</p>
                         </div>
                         <div class="l-box pure-u-1-2 pure-u-med-1-3 pure-u-lrg-1-3">
-                                <img class="pure-img" src="scrollreveal.png">
-                            <p style="text-align:center; margin:0">ScrollReveal</p>
+                                <img class="pure-img" src="number1-6.png">
+                            <p style="text-align:center; margin:0;word-wrap:break-word;" id="area6">虚位以待</p>
                         </div>
                     </div>
                 </div>
@@ -189,56 +194,40 @@
                 <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
                     <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
                         <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <span class="anijs-reserved-if anijs-reserved-word">If</span>
-                        </div>
-                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <input id="demoif" type="text" placeholder="some event" value="click">
+                            <span class="anijs-reserved-if anijs-reserved-word">如果</span>你有一点喜欢Ta
                         </div>
                     </div>
 
                     <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
                         <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <span class="anijs-reserved-on anijs-reserved-word">On</span>
-                        </div>
-                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <input id="demoon" type="text" class="pure-input-1-2" placeholder="some selector like" value=" .navbar">
+                            <span class="anijs-reserved-on anijs-reserved-word">当看到</span>Ta调皮搞笑的时候
                         </div>
                     </div>
 
                     <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
                         <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <span class="anijs-reserved-do anijs-reserved-word">Do</span>
-                        </div>
-                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <input id="demodo" type="text" class="pure-input-1-2" placeholder="animation type like" value="hinge">
+                            <span class="anijs-reserved-do anijs-reserved-word">当看到</span>Ta平静语气的时候
                         </div>
                     </div>
                     <div class="pure-u-1-2 pure-u-med-1-5 pure-u-lrg-1-6 small-margin">
                         <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <span class="anijs-reserved-to anijs-reserved-word">To</span>
-                        </div>
-                        <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                            <input id="demoto" type="text" class="pure-input-1-2" placeholder="animation target" value="input">
+                            <span class="anijs-reserved-to anijs-reserved-word">怦然心动</span>就是这个时候
                         </div>
                     </div>
 
                 </div>
 
                 <!-- </div> -->
-                <div class="pure-u-1-2 pure-u-med-1-6 pure-u-lrg-1-6">
+                <div class="pure-u-1-2 pure-u-med-1-6 pure-u-lrg-1-6" style="width: 100%;">
                     <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
                         <span class="anijs-reserved-do anijs-reserved-word"></span>
                     </div>
                     <div class="pure-u-1 pure-u-med-1 pure-u-lrg-1">
-                        <button id="demotryit" class="pure-button pure-button-primary" data-anijs="if:click, do: displayTruebounceIn, to: #try .pure-alert,before:$validateCommandExecution">Try it!</button>
+                        <button id="demotryit" class="pure-button pure-button-primary">Try it!</button><p style="display:inline-block;" id="tishi"></p>
                     </div>
                 </div>
-
-                <p>
-                    <span class="anijs-reserved-if anijs-reserved-word">If</span> some event(click, scroll, mouseover and <a href="https://developer.mozilla.org/en-US/docs/Web/Events">more</a>), <span class="anijs-reserved-on anijs-reserved-word">On</span> any element (css selector), <span class="anijs-reserved-do anijs-reserved-word">Do</span> some behavior(Rotate animation), <span class="anijs-reserved-to anijs-reserved-word">To</span> (any element).
-                </p>
                 <p style="color: white;">
-                    更多<a style="text-decoration: underline;color:white" href="https://github.com/wcy92929292/">点击</a>.
+                    更多<a style="text-decoration: underline;color:white" href="https://github.com/wcy92929292/">点击去我的主页</a>.
                 </p>
             </div>
         </div>
@@ -274,7 +263,7 @@
 	<script src="easy-responsive-tabs.js"></script> 
 	<script type="text/javascript">
 			"use strict";
-			var dappAddress = "n1hMaHMTUeRG658TVbgVKJyi6i8PfaCBzHi";
+			var dappAddress = "n1iL99gejsLXHkFw9CD6GSoucNeFTLr2zQF";
 
 			var nebulas = require("nebulas"),
 			Account = nebulas.Account,
@@ -292,7 +281,7 @@
 			var mylat = 0;
 
 			var map = new BMap.Map("dituContent");
-
+			map.setMapStyle({style:'light'});
 			function createMap(){
 				var point = new BMap.Point(116.395645,39.929986);
 				map.centerAndZoom(point,13);
@@ -328,30 +317,26 @@
 			});
 			
 			
-			$("#Release").click(function(){
-				var name = $("#myname").val();
-				var number = $("#mynumber").val();
-				var date = $("#datepicker").val();
-				var time = $("#timepicker").val();
-				var message = $("#mymessage").val();
+			$("#submit").click(function(){
 				
-				var obj = document.getElementById("mysport"); 
-				var index = obj.selectedIndex; 
-				var sport = obj.options[index].text; 
+				var time = getNowFormatDate();
+				var message ="";
+				if($("#create").css("display")=="none"){
+					message = $("#demo").val();
+				}else{
+					message = $("#createDemo").val();
+				}
 				if(mylng === 0){
 					alert('please click the map to mark your co-ordinates!');
 					return;
 				}
-				if(name.length === 0){
-					alert('Please improve your information');
-					return;
-				}
-				
+				mylng = $('#mylng').text();
+				mylat = $('#mylat').text();
 				var to = dappAddress;
 				var value = "0";
-				var callFunction = "sign";
+				var callFunction = "submit";
 
-				var callArgs = "[\"" + "0" + "\",\""+ name + "\",\"" + number + "\",\"" + sport + "\",\"" + date + '-'+ time + "\",\"" + mylng + "\",\"" + mylat + "\",\"" + message  + "\"]";
+				var callArgs = "[\"" + time + "\",\"" + mylng + "\",\"" + mylat + "\",\"" + message  + "\"]";
 				
 				
 				serialNumber = nebPay.call(to, value, callFunction, callArgs, {
@@ -369,9 +354,9 @@
 					alert("Canceled uploading");
 			   }else{
 					//alert("success");
-					intervalQuery = setInterval(function(){
+					/* intervalQuery = setInterval(function(){
 							funcIntervalQuery();
-					},10000);
+					},10000); */
 			   }
 			}
 			
@@ -392,45 +377,96 @@
 			map.addEventListener("click",function(e){
 				mylng = e.point.lng;
 				mylat = e.point.lat;
-				$('#placepicker').text("(" + mylng + ", " + mylat + ")");
+				$('#mylng').text(mylng);
+				$('#mylat').text(mylat);
+				$('#reply').hide();
+				$('#create').show();
+				$('#submit').show();
 			 });
 			
 		
 
 			function addMarker(point, index) {  
-				var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(150,74));  
+				var myIcon = new BMap.Icon("heart-1.png", new BMap.Size(150,74));  
 				var marker = new BMap.Marker(point, { icon: myIcon });  
 				map.addOverlay(marker);  
 				return marker;  
 			}  
 
+			/* var peopleArr = [];
+			var countPeople=0;
+			var people = new Object();
+			var areaArr=[];
+			var countArea=0;
+			var area = new Object(); */
+			
+			function addInfoWindow(marker, markerArr,i) {  
 
-			function addInfoWindow(marker, respObject) {  
-
-				var title = '<div style="font-weight:bold;color:#CE5521;font-size:14px">' + respObject.name + '@'+ respObject.number + '</div>';
+				var title = '';
 				var html = [];
-				html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');
+				
+				/* for(var k=0;k<areaArr.length;k++){
+					if(areaArr[k][markerArr[i].mylng+"+"+markerArr[i].mylat]!= null &&areaArr[k][markerArr[i].mylng+"+"+markerArr[i].mylat]!= undefined){
+						flag++;
+					}
+				}
+				if(flag==0){ */
+					for (var j = 0; j < markerArr.length; j++) {
+						if(markerArr[j].mylng+"+"+markerArr[j].mylat == markerArr[i].mylng+"+"+markerArr[i].mylat){
+							html.push(markerArr[j].time+'<div class="admin-group" style="display: -webkit-flex;">');
+							html.push('<img class="admin-img" src="头像'+parseInt((7)*Math.random())+'.png" style="width: 45px;height: 45px;">');
+							html.push('<div class="admin-msg" style="width: 75%;position: relative;">');
+							html.push('<i class="triangle-admin" style="left: 4px;border-right: 12px solid #9EEA6A;width: 0; height: 0; position: absolute;top: 10px; display: inline-block;border-top: 10px solid transparent;border-bottom: 10px solid transparent"></i>');
+							html.push('<span class="admin-reply" style="box-shadow: 0px 0px 2px #ddd;display: inline-block;padding: 8px; border-radius: 4px;background-color: #9EEA6A; margin: 0 15px 12px;">'+markerArr[j].message+'</span>');
+							html.push('</div></div>');
+							/* countArea++; */
+							
+						}
+						
+					}
+					/* area[markerArr[i].mylng+"+"+markerArr[i].mylat]=countArea;
+					areaArr.push(area);
+				} */
+				
+				
+				
+				/* html.push('<div class="admin-group" style="display: -webkit-flex;">');
+				html.push('<img class="admin-img" src="img/aa.jpg" style="width: 45px;height: 45px;">');
+				html.push('<div class="admin-msg" style="width: 75%;position: relative;">');
+				html.push('<i class="triangle-admin" style="left: 4px;border-right: 12px solid #9EEA6A;width: 0; height: 0; position: absolute;top: 10px; display: inline-block;border-top: 10px solid transparent;border-bottom: 10px solid transparent"></i>');
+				html.push('<span class="admin-reply" style="box-shadow: 0px 0px 2px #ddd;display: inline-block;padding: 8px; border-radius: 4px;background-color: #9EEA6A; margin: 0 15px 12px;">欢迎来抢楼！</span>');
+				html.push('</div></div>'); */
+		     	
+				
+				
+				/* html.push('<table cellspacing="0" style="table-layout:fixed;width:100%;font:12px arial,simsun,sans-serif"><tbody>');
 				html.push('<tr>');
 				html.push('<td style="vertical-align:top;line-height:16px">' + respObject.sport  + ' </td>');
 				html.push('<tr>');
 				html.push('<td style="vertical-align:top;line-height:16px">' + respObject.time +' </td>');
 				html.push('<tr>');
 				html.push('<td style="vertical-align:top;line-height:16px">'  + "message:"+ respObject.message + ' </td>');
+				html.push('<tr>'); */
+				/* html.push('<td style="vertical-align:top;line-height:16px;" id="lng">'  + "mylng:"+ respObject.mylng + ' </td>');
 				html.push('<tr>');
-				html.push('<td style="vertical-align:top;line-height:16px;" id="lng">'  + "mylng:"+ respObject.lng + ' </td>');
-				html.push('<tr>');
-				html.push('<td style="vertical-align:top;line-height:16px;" id="lat">'  + "mylat:"+ respObject.lat + ' </td>');
-				html.push('</tr>');
-				html.push('</tbody></table>');
+				html.push('<td style="vertical-align:top;line-height:16px;" id="lat">'  + "mylat:"+ respObject.mylat + ' </td>');
+				html.push('</tr>'); */
+				/* html.push('</tbody></table>'); */
 				var infoWindow = new BMap.InfoWindow(html.join(""), {
 					 title: title,
-					 width: 200
+					 width: 500
 				}); 
 
 				var openInfoWinFun = function () {  
 					
 					marker.openInfoWindow(infoWindow);  
-					setTimeout(function(){$('#placepicker').text("(" + respObject.lng + ", " + respObject.lat + ")");},1000);
+					setTimeout(function(){
+						$('#mylng').text(markerArr[i].mylng);
+						$('#mylat').text(markerArr[i].mylat);
+						$('#reply').show();
+						$('#create').hide();
+						$('#submit').show();
+						},500);
 				};  
 				marker.addEventListener("click", openInfoWinFun);  
 				
@@ -439,48 +475,158 @@
 		
 		
 			function getpoint(){
-				var from = Account.NewAccount().getAddressString();
-				var value = "0";
-				var nonce = "0";
-				var gas_price = "1000000";
-				var gas_limit = "2000000";
-				
-				var callFunction = "getinfo";
-				var callArgs = "[\"" + "50" + "\"]";
-				
-				var contract = {
-				  "function":callFunction,
-				  "args":callArgs
-				}
+				var to = dappAddress;
+		        var value = "0";
+		        var callFunction = "getAllBook";
+		        var callArgs = "[]"; 
+		        nebPay.simulateCall(to, value, callFunction, callArgs, {    
+		            listener: cbSearch     
+		        });
 
-				neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(
 					
-					function(resp){
-						console.log(resp.result);
-						var markerArr = JSON.parse(resp.result);
-						for (var i = 0; i < markerArr.length; i++) {  
-							var p0 = markerArr[i].lng;  
-							var p1 = markerArr[i].lat;  
-							var maker = addMarker(new window.BMap.Point(p0, p1), i);  
-							addInfoWindow(maker, markerArr[i], i);   
-						} 
-				}).catch(function(err){
-					  console.log("error:"+err.message);
-				})
+				function cbSearch(resp){
+					console.log(resp.result);
+					var markerArr = JSON.parse(resp.result);
+					var areaArr=[];
+					var peopleArr = [];
+					
+					for (var i = 0; i < markerArr.length; i++) {  
+						var p0 = markerArr[i].mylng;  
+						var p1 = markerArr[i].mylat;  
+						var countArea=0;
+						var countPeople=0;
+						var people = new Object();
+						var area = new Object();
+						for (var k = 0; k < markerArr.length; k++) {
+							if(markerArr[k].mylng+"+"+markerArr[k].mylat == markerArr[i].mylng+"+"+markerArr[i].mylat){
+								countArea++; 
+							}
+							if(markerArr[k].account == markerArr[i].account){
+								countPeople++; 
+							}
+						}
+						area[markerArr[i].mylng+"+"+markerArr[i].mylat]=countArea;
+						areaArr.push(area);
+						
+						people[markerArr[i].account]=countPeople;
+						peopleArr.push(people);
+						var maker = addMarker(new window.BMap.Point(p0, p1), i);  
+						addInfoWindow(maker, markerArr, i);   
+					} 
+					var peopleLast = set_sort(remove(peopleArr));
+					var areaLast = set_sort(remove(areaArr));
+					for(var item in peopleLast[0]){
+						$("#people1").html("("+item+")-"+peopleLast[0][item]+"次留言")
+					}
+					for(var item in peopleLast[1]){
+						$("#people2").html("("+item+")-"+peopleLast[1][item]+"次留言")
+					}
+					for(var item in peopleLast[2]){
+						$("#people3").html("("+item+")-"+peopleLast[2][item]+"次留言")
+					}
+					for(var item in peopleLast[3]){
+						$("#people4").html("("+item+")-"+peopleLast[3][item]+"次留言")
+					}
+					for(var item in peopleLast[4]){
+						$("#people5").html("("+item+")-"+peopleLast[4][item]+"次留言")
+					}
+					for(var item in peopleLast[5]){
+						$("#people6").html("("+item+")-"+peopleLast[5][item]+"次留言")
+					}
+					
+					for(var item in areaLast[0]){
+						$("#area1").html("("+item+")-"+areaLast[0][item]+"条留言")
+					}
+					for(var item in areaLast[1]){
+						$("#area2").html("("+item+")-"+areaLast[1][item]+"条留言")
+					}
+					for(var item in areaLast[2]){
+						$("#area3").html("("+item+")-"+areaLast[2][item]+"条留言")
+					}
+					for(var item in areaLast[3]){
+						$("#area4").html("("+item+")-"+areaLast[3][item]+"条留言")
+					}
+					for(var item in areaLast[4]){
+						$("#area5").html("("+item+")-"+areaLast[4][item]+"条留言")
+					}
+					for(var item in areaLast[5]){
+						$("#area6").html("("+item+")-"+areaLast[5][item]+"条留言")
+					}
+				}
 			
 			
 			}
 		
+			function remove(arr){ 
+				var newarr=[]; 
+				var obj="";
+				for(var i=0;i < arr.length;i++){ 
+				if(obj.indexOf(JSON.stringify(arr[i]))==-1){ 
+					newarr.push(arr[i]); 
+					obj = obj+JSON.stringify(arr[i])+""; 
+				}
+
+				} 
+				return newarr; 
+				}
+			
+			function set_sort(b10){
+				function sort0(a,b){
+					return b-a;
+				}
+				var resultVal = [];//存的数组每一项的val
+				for(var i=0; i<b10.length; i++){
+					for(item in b10[i]){
+						resultVal.push(b10[i][item]);
+					}
+				}
+				resultVal.sort(sort0);//排序key
+				var resultArr = [];
+				for(var i=0; i<b10.length; i++){
+					for(var item in b10[i]){
+						for(var j=0; j<resultVal.length;j++){
+							if(resultVal[j] === b10[i][item] ){
+								resultArr[j] = b10[i];
+								resultVal[j] = '';
+								break;
+							};
+						}
+					}
+				}
+				return resultArr;
+			}
+
 			
 			
+			function getNowFormatDate() {
+			    var date = new Date();
+			    var seperator1 = "-";
+			    var seperator2 = ":";
+			    var month = date.getMonth() + 1;
+			    var strDate = date.getDate();
+			    if (month >= 1 && month <= 9) {
+			        month = "0" + month;
+			    }
+			    if (strDate >= 0 && strDate <= 9) {
+			        strDate = "0" + strDate;
+			    }
+			    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+			            + " " + date.getHours() + seperator2 + date.getMinutes()
+			            + seperator2 + date.getSeconds();
+			    return currentdate;
+			} 
 			
+			
+			$("#demotryit").click(function(){
+				$("#tishi").html("___就知道你会点。我只是测试你是不是心动了，快去留言吧。")
+			})
 		</script>
 		<!-- Google Analytics-->
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		  })(window,document,'script','analytics.js','ga');
 
 		  ga('create', 'UA-44521541-4', 'anijs.github.io');
 		  ga('send', 'pageview');
